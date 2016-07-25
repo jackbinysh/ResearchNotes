@@ -1,0 +1,406 @@
+\documentclass[11pt,onecolumn, a4page]{article}
+
+%______PREAMBLE____________
+
+% Column Separation
+\setlength{\columnsep}{0.35in}
+
+% General
+\usepackage{graphicx,float,amsmath,amsfonts,lipsum,tikz-cd}
+
+
+% Margins
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+%Fonts
+%Default sans serif to helvetica
+\renewcommand{\sfdefault}{helvet}
+
+
+% Title formatting
+\usepackage{titling}
+
+\pretitle{\begin{flushleft}\LARGE\sffamily}
+\posttitle{\par\end{flushleft}}
+
+\preauthor{\begin{flushleft}\large}
+\postauthor{\par\end{flushleft}}
+
+\predate{\begin{flushleft}\large}
+\postdate{\par\end{flushleft}}
+
+% Title height
+\setlength{\droptitle}{-25pt}
+
+%Section Titling
+\usepackage{sectsty}
+\sectionfont{\large\fontfamily{phv}\selectfont}
+\subsectionfont{\normalsize\fontfamily{phv}\selectfont}
+%Acknowledgements
+\subsubsectionfont{\scshape\fontfamily{phv}\selectfont}
+
+% Columns
+\usepackage{balance} % balances last 2 columns of text
+
+% Header and Footer options
+\usepackage{fancyhdr}
+\fancyhead[CO,CE]{}
+\fancyhead[RO,RE]{}
+\fancyhead[LO,LE]{ }
+\fancyfoot[C]{\thepage}
+\fancyfoot[RO, RE] {}
+
+\pagestyle{fancy}
+
+% Section numbering off
+%\setcounter{secnumdepth}{0}
+
+% Macros for writing QM
+
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\ketbra}[2]{|#1\rangle\!\langle#2|}
+
+% equation numbering%
+\numberwithin{equation}{subsection}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+%_______CONTENT____________
+
+\begin{document}
+\pagenumbering{gobble}
+% Title
+
+\section{About}
+
+Some notes on toms umbilics paper, made on {\today}
+
+The idea is that the director field $\bf{n}$ is defined on the physical sample space - this sample space is denoted as $\mathbb{R}^3$ in the paper, but it could also have holes in it, be something more complicated. It splits the tangent bundle of $\mathbb{R}^3$ into a line bundle along the direction of $\bf{n}$, and a plane bundle orthogonal to it.
+
+\begin{equation}
+T\mathbb{R}^3 \cong L_{n} \oplus \xi
+\end{equation}
+
+Then, taking grad of n gives us a section of the bundles:
+
+\begin{eqnarray}
+\nabla n_{\parallel} \in \Gamma (L_{n}^{*} \otimes \xi) \cong End(L_{n}, \xi) \\
+\nabla n_{\bot} \in \Gamma (\xi^{*} \otimes \xi) \cong End(\xi, \xi)
+\end{eqnarray}
+
+so its worth exploring the structure of the bundles $\xi^{*} \otimes \xi$ and $L_{n}^{*} \otimes \xi$ over the sample space. \par
+
+\subsection{An analogy with surfaces}
+
+One thing to note is that a similar situation occurs when we consider a surface $M$, embedded in $\mathbb{R}^3$ say. There, the embedding of the surface defines a splitting of $T\mathbb{R}^3$ into the tangent and normal bundles to the surface. The analogy is that $\xi$ is the tangent bundle to the surface, and $L_{n}$ is its normal bundle:
+
+\begin{eqnarray}
+ \xi \leftrightarrow TM \\
+ L_{n} \leftrightarrow NM
+\end{eqnarray}
+
+There, $n : M \rightarrow S^{2}$ would be considered the gauss map, and   $\nabla n_{\parallel} = n_{*} \in \Gamma (T^{*}M \otimes TM)$, the differential, or pushforward of the gauss map, aka the shape operator.
+
+I.e, if we were talking about a surface, we could consider the shape operator to be a section of the bundle $(T^{*}M \otimes TM)$ over the surface, i.e. a linear map on the tangent space at each point on the surface. The analogous quantity here is $\nabla n_{\parallel}$.
+
+Again, lets discuss surfaces. At each point we have the vector space $T^{*}M \otimes TM$.  Actually, on a surface, the shape operator is always symmetric, so I think for a surface at least we only consider a sub bundle of this thing.  Theres alot more to this (representation theory) I have no idea of. 
+
+At any rate we can decompose the vector space of all self adjoint linear maps into 2 pieces under the action of the group SO(2). To do this, we need to know that, given a group $G$'s action on a vector space $V$ (ie the homomorphism $\phi$ from $G$ to $End(v)$), we define the groups action on the dual vector space $V^{*}$ by: 
+
+
+\begin{eqnarray}
+ \phi^{*}(g)(e^{i}) = \phi(g^{-1})^{*}(e^{i})
+\end{eqnarray}
+
+where this defines the group action $\phi^{*}$. Note that $\phi(g^{-1})^{*}: V^{*} \rightarrow V^{*}$ is now the dual map  associated to the map $\phi(g^{-1}) :V \rightarrow V$.
+
+With all this we get that, if $e_{i} \in V$ transforms as $\phi(g)$, ie:
+
+\begin{eqnarray}
+ \begin{pmatrix}a\\b\end{pmatrix} \rightarrow \phi(g)\begin{pmatrix}a\\b\end{pmatrix}
+\end{eqnarray}
+
+where 
+
+\begin{eqnarray}
+ \phi(g)= \begin{pmatrix} 
+ cos \theta & sin \theta \\
+  -sin \theta & cos \theta \\
+ \end{pmatrix} \in SO(2)
+\end{eqnarray}
+
+then 
+
+\begin{eqnarray}
+\begin{pmatrix} 
+ a & b\\
+  b & d \\
+ \end{pmatrix} 
+ \rightarrow  
+ \phi(g^{-1})
+ \begin{pmatrix} 
+ a & b\\
+  b & d \\
+ \end{pmatrix}
+  \phi(g)
+\end{eqnarray}
+where the matrix here is a symmetric element of our vector space $V^{*} \otimes V$
+
+Splitting 
+
+\begin{eqnarray}
+\begin{pmatrix} 
+ a & b\\
+  b & d \\
+ \end{pmatrix} 
+=
+ \begin{pmatrix} 
+ \frac{1}{2}(a+d) & 0\\
+  0 & \frac{1}{2}(a+d) \\
+ \end{pmatrix}
+ +
+  \begin{pmatrix} 
+ \frac{1}{2}(a-d) & b\\
+  b & \frac{1}{2}(d-a) \\
+ \end{pmatrix}
+\end{eqnarray}
+and applying the transformation to both parts, we find the first matrix is unchanged, and the second one transforms as:
+
+\begin{eqnarray}
+  \begin{pmatrix} 
+ \frac{1}{2}(a-d) & b\\
+  b & \frac{1}{2}(d-a) \\
+ \end{pmatrix}
+ \rightarrow  
+ \begin{pmatrix} 
+ cos 2\theta & sin 2\theta \\
+  -sin 2\theta & cos 2\theta \\
+ \end{pmatrix}
+   \begin{pmatrix} 
+ \frac{1}{2}(a-d) & b\\
+  b & \frac{1}{2}(d-a) \\
+ \end{pmatrix}
+\end{eqnarray}
+
+ie we split our symmetric matrix into  $trace(A)I +$ symmetric traceless part. the symmetric traceless part transforms as spin 2, the trace part remains invariant.
+
+Here however, we are not tangent to a surface, and the "shape operator" is not neccessarily symmetric, so its decomposition under $SO(2)$ is more complicated - it also has the $J$ subspace, as well as $I$ and $E$ from the paper. However, the interesting part in both cases is the spin 2, $E$ part. On a surface, the shape operator is a section of the bundle $I +E$, and the umbilic points of the section correspond to the zeroes of a section of $E$. In other words, to give given the shape operator defined over the surface is to be given a section of $E$, and umbilic points are of interest, since they are the zero locus of this section. 
+
+It is the structure of this vector bundle, $E$, that is now analysed.
+
+\textbf {QUESTION: on the surface, the zero locus of the section is a set of points, which presumably can be given signs somehow - ie they are a homology cycle. They should have a poincare dual - I suspect its the curvature form ( well it must be). But whats the significance of this in light of the gauss bonnet theorem? "computation of the euler charecteristic using the zeroes of this section". I'm sure theres some significance in the fact we are looking at the intersection of the zero section and some other section of E - maybe poincare duals of both of these sections are enlightening?}
+
+\subsection{Constructing connection one forms and gauss bonnet chern}
+
+The paper then goes on to say we have two sections of E, $\Delta$ and $\Pi$ - these provide a nonvanshing frame field everywhere except the zeroes of $\Delta$ (the umbilic points/ lines). Here's how I THINK this goes:
+
+Let the zero set be denoted $U$. Then, to remain with surfaces embedded in $\mathbb{R}^3$ for a moment, we have a metric compatible connection on the surface, which is inherited from the ambient space. This is defined everywhere. Now, we can define connection one forms on  $\mathbb{R}^3 \backslash U$ by using our sections:
+
+\begin{eqnarray}
+ \nabla \Delta = A \otimes \Pi \\
+ \nabla \Pi = -A \otimes \Delta 
+\end{eqnarray}
+
+where we make use of the fact we have a riemmanian metric on our bundle $E$, which allows us to write down an antisymettric matrix of connection 1 forms:
+
+\begin{eqnarray}
+   \begin{pmatrix} 
+ 0 & A\\
+  -A & 0 \\
+ \end{pmatrix}
+\end{eqnarray}
+
+Note these are ONLY defined on $M\backslash U$. Note that generally
+\begin{eqnarray}
+\Omega = d\omega - \omega \wedge \omega
+\end{eqnarray}
+
+Here, our connection 1 form matrix is super simple - since $A \wedge A = 0$, the second term in the above always drops out, and our curvature 2 form matrix is just
+
+\begin{eqnarray}
+   \begin{pmatrix} 
+ 0 & dA\\
+  -dA & 0 \\
+ \end{pmatrix}
+\end{eqnarray}
+
+ie. $\Omega_{E} = dA $.
+
+We can integrate the curvature two form  $\Omega$ over the punctured surface $M\backslash U$ . Using stokes,
+
+\begin{eqnarray}
+\int_{M\backslash U} \Omega_{E} = \int_{C_{i}}A
+\end{eqnarray}
+
+where the $C_{i}$ are little circles around the umbilic points - each bounds a disk $D_{i}$ about the umbilic point $U_{i}$.
+
+We want to extend our analysis over the umbilic points, to get an intergral over the whole surface. But, though our connection is defined everywhere fine, our one form $A$ isn't.
+
+However, we can extend the analysis using another frame field defined on a disk containing the umbilic - its denoted $\{e_{1}, e_{2}\}$ in the paper, and is defined in a neighbourhood of an umbilic point. We are making heavy use of the fact the connection is a local object - it only depends on values it takes on a local frame field.
+
+With this frame field, we define new connection one forms $\omega \in \Gamma(T*D)$ on a small disk around the umbilic. Note its THE SAME $\nabla$, we are just chaning the frame we are expressing things with respect to.
+
+\begin{eqnarray}
+ \nabla e_{1} = w \otimes e_{2} \\
+ \nabla e_{2} = -w \otimes e_{1} \\
+\end{eqnarray}
+
+Now, $A$ is defined on $D \backslash U$, $\omega$ is defined on $D$, so there overlap is defined on the annulus $D\backslash U$. In this region, we can relate the two one forms with the standard formula
+
+\begin{eqnarray}
+\omega' = g^{-1} \omega g + g^{-1}dg
+\end{eqnarray}
+
+where $g$ is the matrix of transition functions taking us from one frame field to another:
+
+
+\begin{eqnarray}
+\begin{pmatrix} 
+ \Delta\\
+  \Pi \\
+ \end{pmatrix} 
+ =
+ \begin{pmatrix} 
+ f & g\\
+  -g & f \\
+ \end{pmatrix}
+ \begin{pmatrix} 
+ e_{1}\\
+  e_{2} \\
+ \end{pmatrix} 
+\end{eqnarray}
+
+where $f,g : D\backslash U \rightarrow \mathbb{R}$ are defined on the annulus, and are real valued. Note that we could extend them to the whole disk, and they have to vanish at the origin, because $\Delta$ and $\Pi$ do. Now, in the paper, this expression is given as:
+
+\begin{eqnarray}
+\Delta = |\Delta| \cos\theta e_{1} + |\Delta| \sin\theta e_{2} \\
+\Pi = -|\Delta| \sin\theta e_{1} + |\Delta| \cos\theta e_{2}
+\end{eqnarray} 
+
+we have to be careful as to the domains and ranges of the functions $|\Delta|$ and $\theta$. One way to avoid these issues would be to stick with $f$ and $g$. We find that , since by definition
+
+\begin{eqnarray}
+A = \frac{\left<\Pi, \nabla \Delta \right>}{\left<\Delta, \Delta \right>}
+\end{eqnarray}
+
+plugging in our expression for $\Delta$
+
+\begin{eqnarray}
+A = \frac{-fdg+gdf +(f^{2}+g{^2})\omega}{f^{2}+g^{2}} = \frac{-fdg+gdf}{f^{2}+g^{2}} + \omega
+\end{eqnarray}
+
+We see that the first term looks exactly like the generator of closed but not exact forms on the punctured plane in terms of the cartesian coordinates $x$ and $y$. Its only defined on the annulus - this thing is denoted $d\theta$ in the paper. As usual, this name is a joke, because its definitely NOT an exact form on the annulus- we should read it as one piece, for there IS NO (real valued) function $\theta$ defined on the whole annulus for which it the exterior derivative. It is closed though.
+
+Now, though $d\theta$ is only defined on the annulus, $\omega$ is defined on the whole disk, and stokes can be used on it no problem. Further, $\Omega = d\omega$, since $d\theta$ is closed, so we just add the contributions of the disks into the existing $\Omega$ integral, and get the gauss bonnet theorem as given:
+
+\begin{eqnarray}
+\int_{C_{i}}A = \int_{C_{i}}d\theta  + \int_{C_{i}}w =  \int_{C_{i}}d\theta  + \int_{D_{i}} \Omega
+\end{eqnarray} 
+
+
+\subsection{A little digression into $d \theta$}
+
+The spirit of the $d \theta$ above is that integrating it on a loop around the umbilic should give a winding number. This suggests that $\theta$ can be well defined as a map from the annulus (ie the circle) to THE CIRCLE, and that that the degree of this map should be computed by integrating the one form $d \theta$. But if $\theta$ is circle valued,  then what does it mean to take its exterior derivative?
+
+We can argue in the same way the path lifting argument we see in the computation of the fundamental group of a circle:
+
+\[
+\begin{tikzcd}[{ c c }]
+  & \mathbb{R} \arrow{d}{\pi}  \\
+S^{1} \arrow{r}{f} \arrow{ur}{\tilde{f}} & S^{1}  
+\end{tikzcd}
+\]
+
+Take a regular value in the target, and cover the target circle with two sets, one covering all but this point, and another over this point. Call them $U$ and $V$. Looking at their preimages splits up the domain circle into little patches over each regular point (preimage of regular value), $f^{-1}(V)$, and sets which lie between the regular points, $f^{-1}(U)$. Now, hatcher argues that on each of these patches, our map $f$ can be lifted to the reals, and that this map will assign the regular points values in $\mathbb{R}$ differing by $2\pi$ (on the circle they all hit the same point). 
+
+Now, one thing to note is that 
+
+\begin{eqnarray}
+f = \pi \circ \tilde{f}\\
+\end{eqnarray}
+
+so 
+
+\begin{eqnarray}
+f^{*}  = \tilde{f}^{*} \circ \pi{*} \\
+\end{eqnarray}
+
+Now, $\pi{*}$ pulls the form on the target circle back to the from $dt$ on the reals. $\tilde{f}^{*}$ pulls this form back from the range of $\tilde{f}$ to the domain circle. But the range of $\tilde{f}$ is exactly $2\pi \times$ the winding number. Now $\tilde{f}$ is a diffeo onto its range, and the form we have pulled back onto the domain circle is exactly the one we want. so integrating this form 
+
+\begin{eqnarray}
+\int_{S^{1}}d\theta = \int_{S^{1}} \tilde{f}^{*}{dt} = \int_{\mathbb{R}} {dt} =  2\pi \times winding 
+\end{eqnarray} 
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+\textbf {QUESTION: Is this all correct? Also, what is the domain and range of definition of $\theta$ ? is it real valued? why cant we use stokes on d$\theta$ too?  If it takes values in $S^{1}$, hwo can we take it derivative?}
+
+wrong, the connection is, in the case of surfaces, already the one we have on that surface - the levi civita one or w/e its called. so ITS already defined everywhere, the only problem is in the one forms themselves.
+
+for the general bundle case ,its the connection on $r^3$ the euclidean one.
+
+the other problem is d theta should not be read as the exterior derivative of a real valued function theta. its not. its properly a s1 valued function. to properly verify the relation we have in the paer, you need to show it on charts (where theta really can be interpreted as real valued) , then show that the one forms dtheta piece together to give a properly defined one form everywhere on the annulus - but its definitely NOT an exact form on that annulus. theta is supposed to give winding, so it certainly should be s1 valued, not real valued. 
+
+so theta is a map from the annulus to s1. mod delta is a map from the whole disk to the reals.  
+
+if our general transformation is 
+
+\begin{eqnarray}
+\Delta = f e_{1} + |\Delta| g e_{2} \\
+\Pi = -g e_{1} + f e_{2}\\
+\end{eqnarray} 
+\begin{eqnarray}
+\Delta = |\Delta| \cos\theta e_{1} + |\Delta| \sin\theta e_{2} \\
+\Pi = -|\Delta| \sin\theta e_{1} + |\Delta| \cos\theta e_{2}
+\end{eqnarray} 
+
+then |\Delta| = sqrt(f1^2 + f2^2), since \Delta vanishes at the origin f1 and f2 have to too. this poses no problem for |\Delta|. but for 
+
+theta = arctan (f2/f1) 
+
+it does, because its value at the umbilic is ill defined. so theta is only defined on the umbilic. but wait, its worse! its range should properly be S1. it only appears inside sines and cosines.
+
+theta can be defined on a bunch of charts on the manifold, but it doesnt piece together to give one well defined function over the whole thing. 
+
+also, the expression given for relating the one forms is generic of the structure group is abelian (neat)
+
+and the formula for the curvature of the bundle follows in exactly the way the gauss map gives you the curvature of the tangent bundle - in either case, we can explicitly embed things in r3, and play the game of parralell transporting the planes onto the surface of the sphere. the only difference is that here, the bundle isnt the tangent bundle to any surface
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

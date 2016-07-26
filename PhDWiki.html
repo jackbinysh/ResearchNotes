@@ -131,6 +131,8 @@ Error message and password prompt
 
 <li>$:/state/showeditpreview</li>
 
+<li>$:/state/tab--1963855381</li>
+
 <li>$:/state/tab--86143343</li>
 
 <li>$:/state/tab-1749438307</li>
@@ -255,7 +257,13 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>$:/themes/tiddlywiki/vanilla/options/sidebarlayout</li>
+
 <li>A test tiddler</li>
+
+<li>Draft of 'Poincare Duality'</li>
+
+<li>Poincare Duality</li>
 
 </ul>
 </p>
@@ -6473,16 +6481,19 @@ Error message and password prompt
 <div created="20160703184951569" modified="20160703184951569" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
+<div created="20160726130627385" modified="20160726130627385" title="$:/state/tab--1963855381">
+<pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
+</div>
 <div created="20160703184902857" modified="20160703184904385" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Plugins</pre>
 </div>
-<div created="20160703184857913" modified="20160703184857913" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Plugins</pre>
+<div created="20160703184857913" modified="20160726130626202" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
 <div created="20160703184331852" modified="20160703185009242" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div list="[[A test tiddler]]" title="$:/StoryList">
+<div list="[[Draft of 'Poincare Duality']] [[A test tiddler]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -6913,12 +6924,64 @@ This plugin contains tools to help slice up long texts into individual tiddlers.
     }
 }</pre>
 </div>
+<div created="20160726130632361" modified="20160726130632362" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout">
+<pre>fluid-fixed</pre>
+</div>
 <div created="20160703184338002" modified="20160703185007490" tags="" title="A test tiddler">
 <pre>$$
 f(x) = x^2
 $$
 
 blah blah blah some things</pre>
+</div>
+<div created="20160726130557803" draft.of="Poincare Duality" draft.title="Poincare Duality" modified="20160726133606340" tags="" title="Draft of 'Poincare Duality'">
+<pre>! A Classical Outlook
+
+Here's what Glen Bredon's &quot;Topology and Geometry&quot; ch.6 sec 6 says about the classical view of Poincare duality. 
+
+Suppose we have a manifold with a triangulation. Form its dual complex. We now have two different cell decompositions of the same space. Note that just because the original cell decomposition was a triangulation, the dual doesn't have to be.
+
+[img [Images/celldecomp.jpg]]
+
+The idea is that //every chain in the original complex can be associated with (ie mapped to) a map from the dual complex into numbers//, i.e a cochain on the dual cell complex. 
+
+This is done using intersections. 
+
+*Take any 1 simplex in the above diagram. We associate it to the cochain which takes value 1 on the //unique// dual 1-simplex which intersects our original 1-simplex. We extend by linearity to all 1 chains in our original complex.
+
+*Take a 0-simplex (say v) above. We associate it to the cochain which takes value 1 on the hashed 2-cell around v. Note again that this pairing is unique. 
+
+*Take any 2-simplex above. We associate to the cochain which takes value 1 on the //unique// 0 cell in the dual complex contained within it. 
+
+We denote this map $$D : C_{k} \rightarrow C^{n-k}$$. Note the map inverts the dimension of the complex being considered, and //that it is an isomorphism//.
+
+How does this map play with the boundary and coboundary maps $$\partial, \delta $$? Take the 1-simplex $$[u v]$$
+
+$$
+D(\partial [uv]) = D(v) - D(u) = \delta(D[uv])
+$$
+
+This is completely general. In other words, //we have a chain isomorphism//, where the duality map $$D$$ gives the isomorphism.
+
+Note that the inversion of dimension of the duality map &quot;plays to the right tune&quot; of the co boundary map raising, not lowering, degree.  Taking kernel mod boundary on each of the chain complexes, this isomorphism of chains then gives us our first statement of Poincare duality
+
+$$
+H^{k}(M) = H_{n-k}(M)
+$$
+
+</pre>
+</div>
+<div created="20160726130557803" modified="20160726130608082" tags="" title="Poincare Duality">
+<pre>! A Classical Outlook
+
+Here's what Glen Bredon's &quot;Topology and Geometry&quot; ch.6 sec 6 says about the classical view of Poincare duality. 
+
+Suppose we have a manifold with a triangulation. Form its dual complex. We now have two different cell decompositions of the same space. Note that just because the original cell decomposition was a triangulation, the dual doesn't have to be.
+
+[img [Images/celldecomp.jpg]]
+
+The idea is that //every chain in the original complex can be associated with a map from the dual complex into numbers//, i.e a cochain on the dual cell complex. 
+</pre>
 </div>
 
 </div>
